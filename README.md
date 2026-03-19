@@ -22,6 +22,9 @@ When it finds a match, it writes that directly to Plex's built-in `editionTitle`
 
 No file renaming. No YAML configuration. No Docker containers. Connect, scan, review, apply.
 
+![Movie Cut Detector main interface](docs/images/screenshot_main.png)
+*The main scan results interface after scanning a library of 4,900+ movies.*
+
 ---
 
 ## Who this is for
@@ -58,6 +61,9 @@ It works on files named anything — `movie.mkv`, `Aliens.1986.BluRay.mkv`, or o
 | **Undo support** | Yes — Remove Editions tab | Reset command |
 
 They're complementary, not competing. You can run both — Movie Cut Detector to identify cuts, Edition Manager if you also want technical specs.
+
+![Edition badge on Plex movie poster](docs/images/screenshot_plex_badge.png)
+*The edition badge as it appears on a movie poster in Plex Web after applying a label.*
 
 ---
 
@@ -160,12 +166,21 @@ Both `movie_cut_detector.py` and `movie_cut_detector_gui.py` must be in the same
 ### GUI walkthrough
 
 **Connection Settings**
+
+![Connection Settings panel](docs/images/screenshot_connection.png)
+
 Fill in your Plex URL, Token, TMDb API Key, and Library Name. Click `ⓘ` next to any field for detailed help. Click **Save Settings** to persist credentials to `.env`.
 
 **Running a scan**
+
+![Scan in progress](docs/images/screenshot_scanning.png)
+
 Click **▶ Run Scan**. The status panel shows the current movie being checked, a `47 / 4,933` counter, a live ETA, and running totals for proposed changes, existing editions, and errors. Click **■ Cancel** at any time — partial results are preserved.
 
 **Reviewing results — Scan Results tab**
+
+![Scan results list](docs/images/screenshot_results.png)
+
 - **Multi-option movies** (amber section, top): TMDb found more than one possible cut. Select exactly one per movie — checkboxes are mutually exclusive.
 - **Single-option movies** (orange section): one clear suggestion. **Approve All** checks all of these at once and skips multi-option movies.
 - **Show media with existing tags**: reveals movies already having an `editionTitle` set in Plex — hidden by default.
@@ -183,6 +198,9 @@ Click **▶ Run Scan**. The status panel shows the current movie being checked, 
 | `0m diff` | Matches theatrical, but TMDb metadata flagged a known alternate cut |
 
 **Remove Editions tab**
+
+![Remove Editions tab](docs/images/screenshot_remove_editions.png)
+
 Click **Fetch Tagged Movies** to load all movies from the saved scan report that have an `editionTitle` set. Check the ones you want to clear, then click **Remove Selected**. Respects the Dry Run checkbox. All activity is logged in the Debug Log panel, which opens automatically.
 
 **Exporting results**
@@ -192,6 +210,9 @@ Click **Export CSV** in the bottom bar to save a spreadsheet with title, year, r
 Check the boxes for the changes you want, click **✔ Apply Selected**, confirm the dialog. The `editionTitle` field is written to Plex immediately and the scan report is updated.
 
 **Debug Log**
+
+![Debug log panel](docs/images/screenshot_debug_log.png)
+
 Check **Debug Log** in the bottom bar to open the log panel on the right side. Shows step-by-step connection status, HTTP responses, TMDb lookup results, and file write confirmations. Useful for diagnosing any connection or apply issues.
 
 ---
