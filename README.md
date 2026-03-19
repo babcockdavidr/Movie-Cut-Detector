@@ -12,14 +12,6 @@ Movie Cut Detector scans your Plex movie library, cross-references each film aga
 
 When it finds a match, it writes that directly to Plex's built-in `editionTitle` metadata field — the same field that displays as the edition badge on movie posters in Plex Web and Plex apps:
 
-```
-┌──────────────────────────────┐
-│  Aliens  (1986)              │
-│  ─────────────────────────   │
-│  Director's Cut              │  ← this badge
-└──────────────────────────────┘
-```
-
 No file renaming. No YAML configuration. No Docker containers. Connect, scan, review, apply.
 
 ![Movie Cut Detector main interface](docs/images/screenshot_main.png)
