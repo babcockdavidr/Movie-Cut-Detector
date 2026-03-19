@@ -28,7 +28,7 @@ No file renaming. No YAML configuration. No Docker containers. Connect, scan, re
 
 If you have a library full of movies you know include extended cuts, director's cuts, and unrated versions — but you never went back and added `{edition-Director's Cut}` to the filenames — this tool is for you.
 
-Most Plex users don't rename their files with inline edition tags. If your copy of *Aliens* is called `Aliens.1986.BluRay.mkv` and it's 17 minutes longer than the theatrical cut, Plex has no idea it's the Director's Cut and shows nothing. Movie Cut Detector figures that out for you, using the runtime data and release metadata TMDb already has.
+Many Plex users don't rename their files with inline edition tags, or at least started their server that way. This leaves potentially hundreds of unlabeled, alternate cuts of movies on Plex. If your copy of *Aliens* is called `Aliens.1986.BluRay.mkv` and it's 17 minutes longer than the theatrical cut, Plex has no idea it's the Director's Cut and shows nothing. Movie Cut Detector figures that out for you, using the runtime data and release metadata TMDb already has.
 
 ---
 
@@ -36,13 +36,13 @@ Most Plex users don't rename their files with inline edition tags. If your copy 
 
 There are excellent tools in this space and it's worth being clear about what each one does.
 
-**[Edition Manager for Plex](https://github.com/x1ao4/plex-edition-manager)** and similar tools write technical metadata — resolution, codec, HDR format, content rating, bitrate — into the edition field. They're ideal for people who want their library to display something like:
+**[Edition Manager for Plex](https://github.com/x1ao4/plex-edition-manager)**, **[Edition Manager](https://github.com/Entree3k/edition-manager)**, and similar tools write technical metadata — resolution, codec, HDR format, content rating, bitrate — into the edition field. They're ideal for people who want their library to display something like:
 
 ```
 2160p · Dolby Vision · TrueHD Atmos · REMUX
 ```
 
-Those tools read technical file properties and Plex database info. They don't try to identify *which cut of the film* you have. And when they do surface cut information, they typically work best when the edition is already encoded in the filename — something like `Aliens.1986.{edition-Director's Cut}.mkv`.
+Those tools read technical file properties and Plex database info. They don't try to identify *which cut of the film* you have unless the data already exists in the filename or the file metadata — something like `Aliens.1986.{edition-Director's Cut}.mkv`.
 
 **Movie Cut Detector is different.** It ignores technical file properties entirely and focuses on one question: *is this the theatrical cut, or is it something else?*
 
@@ -169,7 +169,7 @@ Click **▶ Run Scan**. The status panel shows the current movie being checked, 
 - **Multi-option movies** (amber section, top): TMDb found more than one possible cut. Select exactly one per movie — checkboxes are mutually exclusive.
 - **Single-option movies** (orange section): one clear suggestion. **Approve All** checks all of these at once and skips multi-option movies.
 - **Show media with existing tags**: reveals movies already having an `editionTitle` set in Plex — hidden by default.
-- Click any movie title to open a Google search for that film's edition runtimes.
+- **Click any movie title to open a Google search** for that film's edition runtimes.
 - `✕ Ignore` on any row adds that movie to the ignore list — it won't appear in future scans.
 
 **Reading the runtime columns**
@@ -315,22 +315,6 @@ Movie matching uses the TMDb ID that Plex already has stored in `movie.guids` �
 **Edition tag not showing in Plex after applying**
 - Try refreshing metadata for that movie in Plex (right-click → Refresh Metadata)
 - `editionTitle` requires Plex Pass on the server — on free servers the tool falls back to a label tag
-
-**The Apply button stays on "Applying…"**
-- This can happen if the scan results were cleared before applying — run a fresh scan and try again
-- Enable Debug Log before applying for step-by-step output on exactly what's happening
-
----
-
-## Contributing
-
-Issues and pull requests are welcome. Some areas that would benefit from contribution:
-
-- Additional cut keyword coverage for non-English TMDb metadata
-- IMDb runtime cross-reference to reduce false positives on ambiguous titles
-- Confidence scoring for proposed labels (High / Medium / Low)
-- macOS / Linux native GUI wrapper
-- Scheduled / headless mode with webhook notifications (Discord, Slack, etc.)
 
 ---
 
