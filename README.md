@@ -65,6 +65,9 @@ They're complementary, not competing. You can run both — Movie Cut Detector to
 ![Edition badge on Plex movie poster](docs/images/screenshot_plex_badge.png)
 *The edition badge as it appears on a movie poster in Plex Web after applying a label.*
 
+![Edition badge on Plex movie poster](docs/images/screenshot_plex_badge_info.png)
+*The edition badge as it appears on a movie's information page.*
+
 ---
 
 ## Features
